@@ -4,8 +4,7 @@
   "description": "social network for developers",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server"
+    "start": "nodemon"
   },
   "author": "Alvin Wainaina",
   "license": "MIT",
