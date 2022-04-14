@@ -1,5 +1,7 @@
 {
     "mongoURI" : 
     "mongodb+srv://Alvin:nivla001@devconnector.dbnij.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret" : "mysecrettoken"
+    "jwtSecret" : "mysecrettoken",
+    "githubClientId":"2c83c9b5ee0ae7ed3517",
+    "githubSecret":"77dce388242956532d829106e64b8b303925520e"
 }
