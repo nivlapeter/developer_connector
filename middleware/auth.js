@@ -1,11 +1,11 @@
 // const jwt = require("jsonwebtoken")
 // const config = require("config")
-// // middle ware are functions that have access to the rq and res objects while next is a call back that is called leter to move on to next piece of middleware
+// // middle ware are functions that have access to the req and res objects while next is a call back that is called leter to move on to next piece of middleware
 // module.exports = function(req,res,next){ // 
 //     //get token from header
-//     const token = req.header('x-auth-token')
+//     const token = req.header('x-auth-token') //headers have key value pairs hence(x-auth-token) is the key and the token is the value
 
-//     //check if not token
+//     //check if no token
 //     if(!token){
 //         return res.status(401).json({msg : "No Token, authorization denied!"})
 //     }
@@ -42,7 +42,7 @@ module.exports = function (req, res, next) {
       if (error) {
         return res.status(401).json({ msg: 'Token is not valid' });
       } else {
-        req.user = decoded.user;
+        req.user = decoded.user; //setting request.user to the user in the token with the id in the payload
         console.log(req.user);
         
         next();

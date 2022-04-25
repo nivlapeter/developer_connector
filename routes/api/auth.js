@@ -12,11 +12,11 @@ const { body, validationResult } = require('express-validator');
 //@description      Test route
 //@access           Public - for getting tokens to access specific routes
 router.get("/", auth, async(req,res) => {
-    try {
+    try { // used while making a call to the database
       // if (id.match(/^[0-9a-fA-F]{24}$/)) {
       //   // Yes, it's a valid ObjectId, proceed with `findById` call.
       // }
-        const user = await User.findById(req.user).select("-password")
+        const user = await User.findById(req.user.id).select("-password") //-password leaves out the password in the response from the endpoint
         res.json(user)
     } catch (err) {
         console.log(err.message);
@@ -53,7 +53,7 @@ router.post(
           return res.status(400).json({errors:[{msg : "Invalid Credentials"}]}) // use the return if not the final res.status/res.json
         }
         
-        const isMatch = await  bcrypt.compare(password, user.password);
+        const isMatch = await  bcrypt.compare(password, user.password); // compare takes a plain text password and an encrypted password checking if they are a match
 
         if(!isMatch){
             return res.status(400).json({errors:[{msg : "Invalid Credentials"}]})
@@ -68,7 +68,7 @@ router.post(
         jwt.sign(
           payload,
           config.get("jwtSecret"), //pass in the secret
-          {expiresIn : 3600}, //expiration time
+          {expiresIn : 360000}, //expiration time
           (err, token) => {
             if(err) throw err;
             res.json({token})
